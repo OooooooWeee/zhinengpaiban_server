@@ -1,0 +1,138 @@
+.title {
+    color: #346871;
+    font-size: 48px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 65px;
+    margin-top: 35px;
+}
+
+.middle {
+    width: 100%;
+    height: 107px;
+}
+
+.middle-right {
+    width: 1458px;
+    height: 107px;
+    box-sizing: border-box;
+}
+
+.timearea {
+    font-size: 30px;
+    float: left;
+    margin-top: 67px;
+
+}
+
+.time {
+    border-radius: 5px;
+    font-size: 30px;
+    color: #415058;
+    background-color: #ECE6A5;
+    background-size: 231px 60px;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 20%);
+}
+
+.dianmianmianji {
+    margin-left: 85px;
+}
+
+.area {
+    border-radius: 5px;
+    font-size: 30px;
+    color: #415058;
+    background-color: #ECE6A5;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 20%);
+}
+
+.search {
+    width: 152px;
+    height: 55px;
+    font-size: 22px;
+    color: #FFFFFF;
+    background-color: #377F7F;
+    margin-top: 57px;
+    float: right;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.table {
+    width: 1458px;
+    margin: 100px auto;
+    border-collapse: collapse;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 0px;
+}
+
+.tab td {
+    border: 2px solid rgb(161, 181, 181);
+    color: black;
+    font-size: 22px;
+    width: 182px;
+    line-height: 60px;
+    text-align: center;
+    background-color: #E8E8E8;
+}
+
+.tab th {
+    border: 2px solid rgb(161, 181, 181);
+    color: black;
+    font-size: 22px;
+    font-weight: 700px;
+    width: 182px;
+    line-height: 60px;
+    text-align: center;
+    background-color: #E8E8E8;
+}
+
+
+thead tr {
+    height: 60px;
+    background-color: rgb(242, 245, 245);
+}
+
+
+/*
+.yingyeshijian{
+    width: 130px;
+    height: 32px;
+    font-size: 25px;
+    margin-top: 37px;
+    float: left;
+}
+
+.time{
+    width: 201px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 20px;
+    
+    color: #415058;
+    margin-left: 130px;
+    margin-top: 26px;
+    background-color: #ECE6A5;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 20%);
+}
+
+.dianmianmianji{
+    width: 130px;
+    height: 32px;
+    font-size: 25px;
+    margin-top: 26px;
+    margin-left: 396px;
+}
+
+.area{
+    width: 201px;
+    height: 50px;
+    float: right;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #415058;
+    background-color: #ECE6A5;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 20%);
+}
+*/

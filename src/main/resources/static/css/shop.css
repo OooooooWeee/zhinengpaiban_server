@@ -1,0 +1,288 @@
+.title {
+    color: #346871;
+    font-size: 48px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 65px;
+    margin-top: 35px;
+}
+
+.middle {
+    width: 100%;
+    height: 93px;
+}
+
+.search {
+    float: left;
+}
+
+.form {
+    position: absolute;
+    width: 387px;
+    height: 63px;
+    border: 2px solid #c0c0c0;
+    background: #fff;
+    box-sizing: border-box;
+    margin-top: 30px;
+
+}
+
+.keyword {
+    float: left;
+    width: 258px;
+    height: 55px;
+    padding: 2px 44px 2px 17px;
+    border: 1px solid transparent;
+    font-size: 22px;
+    outline: none;
+}
+
+.form button {
+    float: right;
+    width: 63px;
+    height: 61px;
+    line-height: 50px;
+    border: none;
+    background-color: #c0c0c0;
+    font-size: 40px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+}
+
+.search-helper {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 64px;
+    width: 295px;
+    height: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 20%);
+}
+
+.search-helper p {
+    text-align: left;
+    font-size: 20px;
+    height: 33px;
+    padding: 1px 6px;
+    line-height: 28px;
+    cursor: pointer;
+    color: #666;
+}
+
+.middle-right {
+    position: absolute;
+    width: 501px;
+    height: 55px;
+    box-sizing: border-box;
+    margin-top: 41px;
+    margin-left: 937px;
+}
+
+.middle-right .add {
+    float: right;
+    border-radius: 5px;
+    width: 157px;
+    height: 52px;
+    line-height: 22px;
+    font-size: 22px;
+    color: #fff;
+    background-color: #8FABD0;
+    cursor: pointer;
+}
+
+.btnG1 {
+    border-radius: 5px;
+    width: 90px;
+    height: 50px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #346871;
+    cursor: pointer;
+}
+
+.btnG2 {
+    border-radius: 5px;
+    width: 90px;
+    height: 50px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #A4ADB3;
+    cursor: pointer;
+}
+
+.table {
+    width: 1437px;
+    height: 620px;
+    margin: 100px auto;
+    border-collapse: collapse;
+    text-align: center;
+    margin-top: 35px;
+    margin-left: 0px;
+    overflow-y: auto;
+    /*设置纵向滚动*/
+}
+
+td,
+th {
+    border: 2px solid #c0c0c0;
+    font-size: 22px;
+    color: #000000;
+    width: 386px;
+    height: 55px;
+    line-height: 50px;
+}
+
+thead tr {
+    height: 55px;
+    background-color: #E8E8E8;
+}
+
+.table::-webkit-scrollbar {
+    /* 是否隐藏滚动条*/
+    display: block;
+}
+
+::-webkit-scrollbar {
+    /* 定义滚动条样式 */
+    width: 10px;
+    background-color: white;
+}
+
+::-webkit-scrollbar-track {
+    /*定义滚动条轨道 内阴影+圆角*/
+    box-shadow: inset 0 0 0px black;
+    /* border-radius: 5px; */
+    background-color: #E8E8E8;
+}
+
+::-webkit-scrollbar-thumb {
+    /*定义滑块 内阴影+圆角*/
+    border-radius: 10px;
+    box-shadow: inset 0 0 0px rgba(240, 240, 240, .5);
+    background-color: #c0c0c0;
+}
+
+
+/* 下面是弹框 */
+.zhezhao {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    /* 透明度  布局固定居中*/
+    opacity: 1;
+
+}
+
+.tankuang {
+    position: relative;
+    /* background-color:rgb(233, 240, 246); */
+    background-color: rgb(79, 78, 78);
+    width: 400px;
+    height: 355px;
+    border-radius: 5px;
+    margin: 8% auto;
+    border: 1px solid #8FABD0;
+}
+
+#header {
+    height: 60px;
+    /* background: rgb(0, 139, 139); */
+}
+
+#header h3 {
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    top: 20px;
+    left: 150px;
+    /* color: #8FABD0; */
+    color: aliceblue;
+}
+
+#tankuangBody {
+    position: absolute;
+    height: 370px;
+    width: 450px;
+    /* background-color: pink; */
+    left: 50px;
+}
+
+.lb11 {
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+.lb11t {
+    position: absolute;
+    top: 5px;
+    /* right: 60px; */
+    left: 60px;
+    width: 220px;
+    height: 30px;
+    font-size: 18px;
+}
+
+.lb22 {
+    position: absolute;
+    top: 60px;
+    left: 0;
+}
+
+.lb22t {
+    position: absolute;
+    top: 55px;
+    /* right: 60px; */
+    left: 60px;
+    width: 220px;
+    height: 60px;
+    font-size: 18px;
+}
+
+.lb33 {
+    position: absolute;
+    top: 140px;
+    left: 0;
+}
+
+.lb33t {
+    position: absolute;
+    top: 135px;
+    left: 180px;
+    width: 100px;
+    height: 30px;
+    font-size: 18px;
+}
+
+#tankuangFoot {
+    position: absolute;
+    width: 350px;
+    height: 80px;
+    top: 260px;
+    left: 100px;
+}
+
+#tankuangFoot input {
+    color: #fff;
+    background-color: #8FABD0;
+    font-size: 20px;
+    margin-left: 5px;
+    border: 2px solid white;
+    padding: 10px 20px;
+}
+
+@media (max-width: 1920px) and (min-width: 768px) {
+    html {
+        zoom: 75%;
+    }
+
+    @-ms-viewport {
+        width: 1920px;
+    }
+}

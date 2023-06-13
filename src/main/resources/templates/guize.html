@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <title>Document</title>
+    <!-- 导入阿里的图标样式文件 -->
+    <link rel="stylesheet" href="iconfont.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="daohang.css">
+</head>
+<style>
+    .sel{
+        margin-right: 35px;
+        width: 150px;
+        height: 55px;
+        /* font-family: 'KaiTi'; */
+        font-weight: bold;
+        font-size: 0.7rem;
+        padding: 5px 10px;
+        color: #fff;
+        border: 3px solid white;
+        /* border-radius: 5px; */
+        /* background-color: #e9e075; */
+        background-color: #8FABD0;
+        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    }
+    #navbar{
+        position: fixed;
+        z-index: 2001;
+        top: 0px;
+        width: 100%;
+        left: 0px;
+        font-size: 14px;
+        /* 字体粗细，400相当于normal */
+        font-weight: 400;
+        color: #222226;
+        background-color: #fff;
+        /* 阴影  水平阴影距离，垂直阴影距离， 模糊尺寸， 阴影尺寸 颜色*/
+         box-shadow:0 2px 4px 0 rgb(0, 0, 0,5%);
+    }
+    /*  */
+    .navbar-container{
+        width: 100%;
+        /* 最小宽度，窗口缩小之后到1280px不会再缩小 */
+        min-width: 1280px;
+        box-sizing: border-box;
+        padding: 0 24px;
+        margin: 0 auto;
+        height: 48px;
+        line-height: 48px;
+        display: flex;
+        justify-content: space-between;
+        -webkit-box-pack: justify;
+    }
+    .toolbar-container-left{
+        /* 元素会根据自身宽高来设置尺寸。它是完全非弹性的：既不会缩短，也不会伸长来适应 flex 容器 */
+        flex: none;
+    }
+    .logo{
+        position: relative;
+        float: left;
+        margin-right: 8px;
+        /* 当箭头鼠标移到会变成手式鼠标 */
+        cursor: pointer;
+    }
+    .logo img{
+        width: 80px;
+        max-width: 80px;
+        height: 44px;
+        display: block;
+        /* cacl()将img放在盒内的高的中间 */
+        margin-top: calc((48px - 44px)/ 2);
+    }
+    .left-ul{
+        width: auto;
+        height: 100%;
+        /* 去除li中的间隙，在li中要设置font-size,否则没有内容 */
+        font-size: 0px;
+        float: left;
+    }
+    .left-ul li{
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+        height: 100%;
+        line-height: 48px;
+    }
+    a{
+        color:#000;
+        padding: 0 10px;
+        /* 删除a标签的下划线 */
+        text-decoration: none;
+    }
+    /* 鼠标停留时的样式 */
+     .left-ul li:hover{
+        background-color: #eee;
+     }
+     .navbar-container-middle{
+        padding: 0 40px;
+        flex: 1;
+    }
+    
+    .navbar-btns-User{
+        flex: 1;
+    }
+    .userPhoto{
+        height: 100%;
+        float: left;
+        position: relative;
+        line-height: 48px;
+        text-align: center;
+        padding: 0 8px;
+    }
+    .hasAvatar{
+        display: block;
+        line-height: 48px;
+        color: #222226;
+        margin-top: calc((48px - 32px)/ 2);
+        /* margin-right: 16px; */
+        opacity: 1;
+    }
+    .hasAvatar img{
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+    }
+   
+    .navbar-btn{
+        position: relative;
+        height: 48px;
+        line-height: 48px;
+        color: inherit;
+        text-align: center;
+        padding: 0 8px;
+    }
+    .navbar-fl{
+        float: left;
+    }
+    
+</style>
+<body>
+    <div id="navbarBox" style="min-height: 48px;position: absolute;">
+        <!-- fixed定位后的导航栏 -->
+        <div id="navbar">
+            <!-- 导航栏容器 -->
+            <div class="navbar-container" style="background-color: #383839;">
+                <div class="navbar-container-left">
+                    <!-- csdn的logo -->
+                    <div class="logo">
+                        <!-- <img src="11.png" alt=""> -->
+                    </div>
+                </div>
+                <div class="navbar-container-right">
+                    <div class="navbar-btns-User">
+                        <div class="userPhoto" onmouseover="over()" onmouseout="out()">
+                            <!-- 小头像 -->
+                            <a class="hasAvatar" href="https://blog.csdn.net/xingzhidaoren?spm=1000.2115.3001.5343"  >
+                                <img src="22.png">
+                            </a> 
+                        </div>
+                        <!-- 动态 -->
+                        <!-- <div class="navbar-btn navbar-btn-dynamic navbar-fl">
+                            <a>动态</a>
+                        </div>             -->
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content" id="content" style="background-color: #ECF5F2;">
+        
+        <!-- <div class="top" style="width: 100%;height: 2.5rem;background-color: #3796A7;position: relative;"> -->
+            <!-- <input type="button" style="height: 2.5rem;width: 5rem;position: absolute;left: 99%;"></div> -->
+        <!-- </div> -->
+        <!-- <div style="position: absolute;left: 20px;top: 20px;width: 30px;height: 30px;background-color: #3796A7;"></div> -->
+        <div class="menu-box" style="position: relative;" id="menu-box">
+            <!-- 展示与隐藏侧边栏 开始-->
+            <!-- <div style="position: absolute;left: 20px;top: 20px;width: 30px;height: 30px;background-color: #3796A7;"></div> -->
+            <input type="checkbox" id="menu-btn">
+            <label for="menu-btn"><i class="iconfont icon-yemianfanhui"></i></label>
+            <div id="ab"></div>
+            <div class="biao1" id="biao1" style="position:relative;display: grid;place-items: center;font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                
+                <div class="calendar" style="position: absolute;top: 0;left: 0;width: 70vw;user-select: none;">
+                    <div style="margin-top: 20px; width:100%;justify-content: space-evenly;text-align: center; font-family: 'KaiTi', 'Lucida Grande', 'Lucida Sans', Tahoma, sans-serif;font-size: 1.8rem;color: #346871;"><p>排班规则编辑</p></div>
+                    <div style="text-align: left;margin-bottom: 20px;">
+                         
+                       <!-- <button id="opp" style="border-radius: 10px; color: #fff;border: 2px solid #fff;outline: none;background-color: #8FD0B8; box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);cursor: pointer;padding: 15px 40px;transition: all 0.3s;font-size: 1.0rem;">智能生成排班表</button> -->
+                    <!-- <button id="opp2" style="margin-top:20px;border-radius: 10px; color: #fff;border: 2px solid #fff;outline: none;background-color: #9ca0a1; box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);cursor: pointer;padding: 15px 40px;transition: all 0.3s;font-size: 1.0rem;margin-left: 10px;">重置</button> -->
+                    <template id="select-list2" style="text-align: left;" >
+                        <div class="select-list-wrap2" :class="{ 'show-select2' : showSelect2 }" @click="showSelectList2">
+                            <div class="select-list-select-item2">
+                                <span>{{ selectItem2 }}</span>
+                                <svg class="icon" viewBox="0 0 1024 1024" width="20" height="20">
+                                    <path
+                                        d="M579.043 792.408l418.544-418.641c25.83-25.827 33.48-64.34 19.53-98.087-13.95-33.655-46.79-55.52-83.14-55.52L96.8 220.16c-36.352 0-69.205 21.955-83.147 55.52-4.59 11.157-6.842 22.86-6.842 34.47 0 23.395 9.177 46.43 26.365 63.62l418.641 418.639c16.912 16.91 39.772 26.365 63.622 26.365 23.84 0 46.795-9.535 63.62-26.365L579.043 792.409 579.043 792.408z"
+                                        fill="#ffffff">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="select-list-content2" ref="selectListContent2" @click.stop="hideSelectList2">
+                                <ul>
+                                    <li v-for="item2 in list" @click="select2(item2)">{{ item2 }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </template>
+                    <div id="app2" style="margin-top: 20px; text-align: left;display: flex;flex-direction: row;align-items: center;justify-content:left;">
+                        
+                        <!-- <select-list2 :list="list" default="门店1" @select="select2" style="box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);"></select-list2> -->
+                           <label>
+                            <select name="" id="dian1" class="sel" style="background-color: #7CC9D7;width: 230px;height: 65px;">
+                                <!-- <option value="" ></option> -->
+                                <option value="1" selected="selected">门店1</option>
+                                <option value="2">门店2</option>
+                                <option value="3">门店3</option>
+                            </select></label>
+                            <label>
+                            <select name="" id="gz1" class="sel" style="background-color: #e9e075;width: 230px;height: 65px;margin-right: 8px;">
+                                <!-- <option value="" ></option> -->
+                                <option value="1" selected="selected">使用门店规则</option>
+                                <option value="2">使用通用规则</option>
+                            </select></label>
+                       <!-- <nav class="nav" style="box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);">
+                        <input type="radio" name="nav-item-opt" id="nav-item-opt-1" checked>
+                        <label class="nav-item" for="nav-item-opt-1">使用通用规则</label>
+                
+                        <input type="radio" name="nav-item-opt" id="nav-item-opt-2">
+                        <label class="nav-item" for="nav-item-opt-2">使用门店规则</label>
+     
+                        <div class="tracker"></div>
+                    </nav> -->
+                    <div style="text-align: right;align-items: center;margin-left: 20px;">
+                        <button id="oo1" onclick="oo1()" style="margin-top: 0px;  border-radius: 10px; color: #fff;border: 2px solid #fff;outline: none;background-color: #8FD0B8; box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);cursor: pointer;padding: 15px 30px;transition: all 0.3s;font-size: 1.0rem;">保存</button>
+                        <!-- <button id="o2" style="margin-top:0px;border-radius: 10px; color: #fff;border: 2px solid #fff;outline: none;background-color: #9ca0a1; box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);cursor: pointer;padding: 15px 30px;transition: all 0.3s;font-size: 1.0rem;margin-left: 10px;">重置</button> -->
+
+                    </div>
+                    </div>
+                    
+                    </div>
+                    <div style=" color: #346871;margin-bottom: 10px;font-family: 'KaiTi';margin-left: 20px;font-weight: bold;font-size: 1.2rem;"><p>开店规则</p></div>
+                    <div style=" width: 1300px;height: 210px;background-color: #fff;border-radius: 30px;">
+                        <div style="padding-top: 22px;padding-left: 40px;">开店之前准备工作时间：<input id="a1" type="text" name="n1" size="5px"  maxlength="5" value="1" style="width: 65px;height: 40px; color: #fff;background-color: #8FABD0; border:2px solid #fff;border-radius: 5px;font-weight: bold;font-size: 1rem;"> h</div>
+                        <div style="padding-top: 22px;padding-left: 40px;">店内人数计算公式：门店面积 / <input id="a2" type="text" name="n2" size="5px"  maxlength="5" value="100" style="width: 65px;height: 40px; color: #fff;background-color: #8FABD0; border:2px solid #fff;border-radius: 5px;font-weight: bold;font-size: 1rem;"> </div>
+                        <div style="padding-top: 5px;padding-left: 40px;">权限：
+                            <select name="" id="a3" class="sel">
+                                <!-- <option value="" ></option> -->
+                                <option value="1" selected="selected">门店经理</option>
+                                <option value="2">经理</option>
+                                <option value="3">小组长</option>
+                                <option value="4">店员</option>
+                                <!-- <option value="4" selected="selected">所有门店</option> -->
+                            </select>
+                            <!-- <div style="display: inline-block;">
+                                 <template id="select-list3" style="text-align: left;" >
+                                 <div class="select-list-wrap3" :class="{ 'show-select3' : showSelect3 }" @click="showSelectList3">
+                                     <div class="select-list-select-item3">
+                                         <span>{{ selectItem3 }}</span>
+                                         <svg class="icon" viewBox="0 0 1024 1024" width="20" height="20">
+                                             <path
+                                                 d="M579.043 792.408l418.544-418.641c25.83-25.827 33.48-64.34 19.53-98.087-13.95-33.655-46.79-55.52-83.14-55.52L96.8 220.16c-36.352 0-69.205 21.955-83.147 55.52-4.59 11.157-6.842 22.86-6.842 34.47 0 23.395 9.177 46.43 26.365 63.62l418.641 418.639c16.912 16.91 39.772 26.365 63.622 26.365 23.84 0 46.795-9.535 63.62-26.365L579.043 792.409 579.043 792.408z"
+                                                 fill="#ffffff">
+                                             </path>
+                                         </svg>
+                                     </div>
+                                     <div class="select-list-content3" ref="selectListContent3" @click.stop="hideSelectList3">
+                                         <ul>
+                                             <li v-for="item3 in list" @click="select3(item3)">{{ item3 }}</li>
+                                         </ul>
+                                     </div>
+                                 </div>
+                             </template>
+                             <div id="app3" style="text-align: left;display: flex;flex-direction: row;align-items: center;justify-content:left;">
+                                 <select-list3 :list="list2" default="门店经理" @select="select3" style="box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);"></select-list3>
+                                 
+                             </div>
+                             </div>-->
+                        
+                        
+                        
+                        </div> 
+
+                    </div>
+                    <div style="color: #346871;margin-top: 10px; font-family: 'KaiTi';margin-left: 20px;font-weight: bold;font-size: 1.2rem;"><p>经营规则</p></div>
+                    <div style="width: 1300px;height: 210px;background-color: #fff;border-radius: 30px;margin-top: 12px;">
+                        <div style="padding-top: 22px;padding-left: 40px;">无客流量时的值班人数：<input id="b1" type="text" name="n4" size="5px"  maxlength="5" value="1" style="width: 65px;height: 40px; color: #fff;background-color: #8FABD0; border:2px solid #fff;border-radius: 5px;font-weight: bold;font-size: 1rem;"> h</div>
+                        <div style="padding-top: 22px;padding-left: 40px;">店内人数计算公式：预测客流 / <input id="b2" type="text" name="n5" size="5px"  maxlength="5" value="3.8" style="width: 65px;height: 40px; color: #fff;background-color: #8FABD0; border:2px solid #fff;border-radius: 5px;font-weight: bold;font-size: 1rem;"> </div>
+                        <div style="padding-top: 5px;padding-left: 40px;">权限：
+                            <select name="" id="b3" class="sel">
+                                <!-- <option value="" ></option> -->
+                                <option value="1" selected="selected">门店经理</option>
+                                <option value="2">经理</option>
+                                <option value="3">小组长</option>
+                                <option value="4">店员</option>
+                                <!-- <option value="4" selected="selected">所有门店</option> -->
+                            </select>
+                            <!-- <div style="display: inline-block;">
+                                 <template id="select-list4" style="text-align: left;" >
+                                 <div class="select-list-wrap4" :class="{ 'show-select4' : showSelect4 }" @click="showSelectList4">
+                                     <div class="select-list-select-item4">
+                                         <span>{{ selectItem4 }}</span>
+                                         <svg class="icon" viewBox="0 0 1024 1024" width="20" height="20">
+                                             <path
+                                                 d="M579.043 792.408l418.544-418.641c25.83-25.827 33.48-64.34 19.53-98.087-13.95-33.655-46.79-55.52-83.14-55.52L96.8 220.16c-36.352 0-69.205 21.955-83.147 55.52-4.59 11.157-6.842 22.86-6.842 34.47 0 23.395 9.177 46.43 26.365 63.62l418.641 418.639c16.912 16.91 39.772 26.365 63.622 26.365 23.84 0 46.795-9.535 63.62-26.365L579.043 792.409 579.043 792.408z"
+                                                 fill="#ffffff">
+                                             </path>
+                                         </svg>
+                                     </div>
+                                     <div class="select-list-content4" ref="selectListContent4" @click.stop="hideSelectList4">
+                                         <ul>
+                                             <li v-for="item4 in list" @click="select4(item4)">{{ item4 }}</li>
+                                         </ul>
+                                     </div>
+                                 </div>
+                             </template>
+                             <div id="app4" style="text-align: left;display: flex;flex-direction: row;align-items: center;justify-content:left;">
+                                 <select-list4 :list="list2" default="门店经理" @select="select4" style="box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);"></select-list4>
+                                 
+                             </div>
+                             </div> -->
+                        
+                        
+                        
+                        </div>
+
+                    </div>
+                    <div style="color: #346871;margin-top: 10px; font-family: 'KaiTi';margin-left: 20px;font-weight: bold;font-size: 1.2rem;"><p>关店规则</p></div>
+                    <div style="width: 1300px;height: 210px;background-color: #fff;border-radius: 30px;margin-top: 12px;">
+                        <div style="padding-top: 22px;padding-left: 40px;">关店之后准备工作时间：：<input id="c1" type="text" name="n7" size="5px"  maxlength="5" value="1" style="width: 65px;height: 40px; color: #fff;background-color: #8FABD0; border:2px solid #fff;border-radius: 5px;font-weight: bold;font-size: 1rem;"> h</div>
+                        <div style="padding-top: 22px;padding-left: 40px;">店内人数计算公式：门店面积 / <input id="c2" type="text" name="n8" size="5px"  maxlength="5" value="80" style="width: 65px;height: 40px; color: #fff;background-color: #8FABD0; border:2px solid #fff;border-radius: 5px;font-weight: bold;font-size: 1rem;"> + <input id="c22" type="text" name="n9" size="5px"  maxlength="5" value="1" style="width: 65px;height: 40px; color: #fff;background-color: #8FABD0; border:2px solid #fff;border-radius: 5px;font-weight: bold;font-size: 1rem;"></div>
+                        <div style="padding-top: 5px;padding-left: 40px;">权限：
+                            <select name="" id="c3" class="sel">
+                                <!-- <option value="" ></option> -->
+                                <option value="1" selected="selected">门店经理</option>
+                                <option value="2">经理</option>
+                                <option value="3">小组长</option>
+                                <option value="4">店员</option>
+                                <!-- <option value="4" selected="selected">所有门店</option> -->
+                            </select>
+                            <!-- <div style="display: inline-block;">
+                                 <template id="select-list5" style="text-align: left;" >
+                                 <div class="select-list-wrap5" :class="{ 'show-select5' : showSelect5 }" @click="showSelectList5">
+                                     <div class="select-list-select-item5">
+                                         <span>{{ selectItem5 }}</span>
+                                         <svg class="icon" viewBox="0 0 1024 1024" width="20" height="20">
+                                             <path
+                                                 d="M579.043 792.408l418.544-418.641c25.83-25.827 33.48-64.34 19.53-98.087-13.95-33.655-46.79-55.52-83.14-55.52L96.8 220.16c-36.352 0-69.205 21.955-83.147 55.52-4.59 11.157-6.842 22.86-6.842 34.47 0 23.395 9.177 46.43 26.365 63.62l418.641 418.639c16.912 16.91 39.772 26.365 63.622 26.365 23.84 0 46.795-9.535 63.62-26.365L579.043 792.409 579.043 792.408z"
+                                                 fill="#ffffff">
+                                             </path>
+                                         </svg>
+                                     </div>
+                                     <div class="select-list-content5" ref="selectListContent5" @click.stop="hideSelectList5">
+                                         <ul>
+                                             <li v-for="item5 in list" @click="select5(item5)">{{ item5 }}</li>
+                                         </ul>
+                                     </div>
+                                 </div>
+                             </template>
+                             <div id="app5" style="text-align: left;display: flex;flex-direction: row;align-items: center;justify-content:left;">
+                                 <select-list5 :list="list2" default="门店经理" @select="select5" style="box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);"></select-list5>
+                                 
+                             </div>
+                             </div> -->
+                        
+                        
+                        
+                        </div>
+
+                    </div>
+                    <div class="header" style="display: none;">
+                      <button class="lastYear" title="Last year">&lt;&lt;</button>
+                      <button class="lastMonth" title="Last month">&lt;</button>
+                      <div class="currentDate"></div>
+                      <button class="nextMonth" title="Next month">&gt;</button>
+                      <button class="nextYear" title="Next year">&gt;&gt;</button>
+                    </div>
+                    <!-- type=date 年月日形式 -->
+ 
+                    <!-- <input type="date" value="2022-12-12" name="mouth_start"/> -->
+                    <!-- <input type="date" value="2022-12-12" name="mouth_end"/> -->
+                    <div class="dates2"style="display: none;"></div>                    
+                    <div class="dates" style="pointer-events: none;margin-top: 5px;display: none;"></div>
+                    <!-- <div class="dates3"></div> -->
+                    
+                    
+                    <div class="shijians" style="display: none;"></div>                    
+                      <!-- <div class="date">1</div>
+                      <div class="date">2</div>
+                      <div class="date">3</div>
+                      <div class="date">4</div>
+                      <div class="date">5</div>
+                      <div class="date">6</div>
+                      <div class="date">7</div>
+                      <div class="date">8</div>
+                      <div class="date">9</div>
+                      <div class="date">10</div>
+                      <div class="date">11</div>
+                      <div class="date">12</div>
+                      <div class="date">13</div>
+                      <div class="date">14</div> -->
+                      
+
+                  </div>
+                  
+                  <!-- <script src="./calendar.js"></script> -->
+                  <!-- <script src="./script.js"></script> -->
+                  <script src="./guize.js"></script>
+        
+                  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+            </div>
+            
+            <!-- 展示与隐藏侧边栏 结束-->
+            <div class="menu">
+                <!-- 侧边栏的标题 开始-->
+                <div class="menu-title">
+                    <h1>Menu</h1>
+                </div>
+                <!-- 侧边栏的标题 结束-->
+
+                <!-- 每一项导航 -->
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item1">
+                    <label for="menu-item1">
+                        <i class="menu-item-icon iconfont icon-a-04-zixunfabu"></i>
+                        <div>部门人员管理</div>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+                    <div class="menu-content">
+                        <div><a href="renyuan.html" id="o1">人员信息</a></div>
+                        <!-- <span>option2</span> -->
+                        <!-- <span>option3</span> -->
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item2">
+                    <label for="menu-item2">
+                        <i class="menu-item-icon iconfont icon-a-04-zixunfabu"></i>
+                        <div>门店管理</div>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+                    <div class="menu-content">
+                        <div><a href="mendian.html" id="o2">门店信息</a></div>
+                        <!-- <span>option2</span> -->
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item3">
+                    <label for="menu-item3">
+                        <i class="menu-item-icon iconfont icon-a-02-kechengguanli"></i>
+                        <div>排班规则</div>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+                    <div class="menu-content">
+                        <div><a href="guize.html" id="o3">规则编辑</a></div>
+                        <!-- <span>option2</span> -->
+                        <!-- <span>option3</span> -->
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item4">
+                    <label for="menu-item4">
+                        <i class="menu-item-icon iconfont icon-a-02-kechengguanli"></i>
+                        <div>业务预测</div>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+                    <div class="menu-content">
+                        <div><a href="yewu.html" id="o4">业务预测数据</a></div>
+                        <!-- <span>option2</span> -->
+                        <!-- <span>option3</span> -->
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item5">
+                    <label for="menu-item5">
+                        <i class="menu-item-icon iconfont icon-a-01-shujuzhongxin"></i>
+                        <div>智能排班</div>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+                    <div class="menu-content">
+                        <div id="zhineng" onclick="show()"><a href="zhineng.html" id="o5">智能生成排班</a></div>
+                        <div><a href="kaifang.html" id="o6">开放班次管理</a></div>
+                        <!-- <span>option3</span> -->
+                    </div>
+                </div>
+                <div class="set-line"></div>
+
+                <div class="menu-item">
+                    <label>
+                        <i class="menu-item-icon iconfont icon-a-08-shezhi"></i>
+                        <div>setting</div>
+                    </label>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+   <script type="text/javascript">
+      function show(){
+        document.getElementById('content').getElementById('menu-box').getElementById('ab').style.display="none";
+        var b=document.getElementById('content').getElementById('menu-box').getElementById('biao1').style.display="";
+        
+      }
+    // $(function(){
+    //     $('span').bind('click',function(){
+    //         event.stopPropagation();
+    //     })
+    // })
+    // var btn6=document.getElementById("biao1");
+    // // var b=document.getElementById("zhineng");
+    // function show(){
+    //     event.stopPropagation();
+    //     btn6.style.display="none";
+    //     btn6.setAttribute('display','none');
+    // }
+    // window.onload=function(){
+    //    var btn6=document.getElementById("biao1");
+    //    var b=document.getElementById("zhineng");
+    //    b.onclick = function(){
+    //     event.stopPropagation();
+    //     btn6.style.display="none";
+    //  } 
+    // }
+     
+   </script>
+</body>
+</html>

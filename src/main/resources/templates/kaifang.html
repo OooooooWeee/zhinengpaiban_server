@@ -1,0 +1,905 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+
+    <title>Document</title>
+    <!-- 导入阿里的图标样式文件 -->
+    <link rel="stylesheet" href="iconfont.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="daohang.css">
+    <link rel="stylesheet" href="biao.css">
+    <link rel="stylesheet" href="css/rishi.css">
+</head>
+<style>
+    table {
+        background-color: #ECF5F2;
+        ;
+        border: none;
+        color: #565;
+        font: 12px arial;
+    }
+
+    table,
+    td,
+    th {
+        margin: 0;
+        padding: 0;
+        vertical-align: middle;
+        text-align: left;
+    }
+
+    tbody td,
+    tbody th {
+        /* background-color: #DFC; */
+        background-color: #fff;
+        /* border-bottom: 2px solid #B3DE94; */
+        border-bottom: 2px solid rgb(189, 207, 223);
+        border-top: 3px solid #ECF5F2;
+        ;
+        padding: 0 8px 5px;
+        width: 180px;
+        overflow: hidden;
+    }
+
+    thead th {
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 19px;
+        padding: 0 2px 1px;
+        text-align: center;
+        width: 200px;
+        overflow: hidden;
+    }
+
+    table thead tr {
+        height: 35px;
+        color: #fff;
+        background-color: rgb(189, 207, 223);
+    }
+
+    tbody tr.odd th,
+    tbody tr.odd td {
+        /*odd就是偶数行*/
+        background-color: #CEA;
+        border-bottom: 2px solid #67BD2A;
+    }
+
+    tbody tr:hover td,
+    tbody tr:hover th {
+        /*tr也有hover样式*/
+        /* background-color: #8b7; */
+        background-color: rgba(189, 207, 223, 0.628);
+        color: #fff;
+    }
+
+    .barcon {
+        color: #565;
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+    #navbar {
+        position: fixed;
+        z-index: 2001;
+        top: 0px;
+        width: 100%;
+        left: 0px;
+        font-size: 14px;
+        /* 字体粗细，400相当于normal */
+        font-weight: 400;
+        color: #222226;
+        background-color: #fff;
+        /* 阴影  水平阴影距离，垂直阴影距离， 模糊尺寸， 阴影尺寸 颜色*/
+        box-shadow: 0 2px 4px 0 rgb(0, 0, 0, 5%);
+    }
+
+    /*  */
+    .navbar-container {
+        width: 100%;
+        /* 最小宽度，窗口缩小之后到1280px不会再缩小 */
+        min-width: 1280px;
+        box-sizing: border-box;
+        padding: 0 24px;
+        margin: 0 auto;
+        height: 48px;
+        line-height: 48px;
+        display: flex;
+        justify-content: space-between;
+        -webkit-box-pack: justify;
+    }
+
+    .toolbar-container-left {
+        /* 元素会根据自身宽高来设置尺寸。它是完全非弹性的：既不会缩短，也不会伸长来适应 flex 容器 */
+        flex: none;
+    }
+
+    .logo {
+        position: relative;
+        float: left;
+        margin-right: 8px;
+        /* 当箭头鼠标移到会变成手式鼠标 */
+        cursor: pointer;
+    }
+
+    .logo img {
+        width: 80px;
+        max-width: 80px;
+        height: 44px;
+        display: block;
+        /* cacl()将img放在盒内的高的中间 */
+        margin-top: calc((48px - 44px)/ 2);
+    }
+
+    .left-ul {
+        width: auto;
+        height: 100%;
+        /* 去除li中的间隙，在li中要设置font-size,否则没有内容 */
+        font-size: 0px;
+        float: left;
+    }
+
+    .left-ul li {
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+        height: 100%;
+        line-height: 48px;
+    }
+
+    a {
+        color: #000;
+        padding: 0 10px;
+        /* 删除a标签的下划线 */
+        text-decoration: none;
+    }
+
+    /* 鼠标停留时的样式 */
+    .left-ul li:hover {
+        background-color: #eee;
+    }
+
+    .navbar-container-middle {
+        padding: 0 40px;
+        flex: 1;
+    }
+
+    .navbar-btns-User {
+        flex: 1;
+    }
+
+    .userPhoto {
+        height: 100%;
+        float: left;
+        position: relative;
+        line-height: 48px;
+        text-align: center;
+        padding: 0 8px;
+    }
+
+    .hasAvatar {
+        display: block;
+        line-height: 48px;
+        color: #222226;
+        margin-top: calc((48px - 32px)/ 2);
+        /* margin-right: 16px; */
+        opacity: 1;
+    }
+
+    .hasAvatar img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+    }
+
+    .navbar-btn {
+        position: relative;
+        height: 48px;
+        line-height: 48px;
+        color: inherit;
+        text-align: center;
+        padding: 0 8px;
+    }
+
+    .navbar-fl {
+        float: left;
+    }
+</style>
+<!-- <body> -->
+<div id="navbarBox" style="min-height: 48px;position: absolute;">
+    <!-- fixed定位后的导航栏 -->
+    <div id="navbar">
+        <!-- 导航栏容器 -->
+        <div class="navbar-container" style="background-color: #383839;">
+            <div class="navbar-container-left">
+                <!-- csdn的logo -->
+                <div class="logo">
+                    <!-- <img src="11.png" alt=""> -->
+                </div>
+            </div>
+            <div class="navbar-container-right">
+                <div class="navbar-btns-User">
+                    <div class="userPhoto" onmouseover="over()" onmouseout="out()">
+                        <!-- 小头像 -->
+                        <a class="hasAvatar" href="https://blog.csdn.net/xingzhidaoren?spm=1000.2115.3001.5343">
+                            <img src="22.png">
+                        </a>
+                    </div>
+                    <!-- 动态 -->
+                    <!-- <div class="navbar-btn navbar-btn-dynamic navbar-fl">
+                            <a>动态</a>
+                        </div>             -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content" id="content" style="background-color: #ECF5F2; overflow-y:auto;">
+
+    <!-- <div class="top" style="width: 100%;height: 2.5rem;background-color: #3796A7;position: relative;"> -->
+    <!-- <input type="button" style="height: 2.5rem;width: 5rem;position: absolute;left: 99%;"></div> -->
+    <!-- </div> -->
+    <!-- <div style="position: absolute;left: 20px;top: 20px;width: 30px;height: 30px;background-color: #3796A7;"></div> -->
+    <div class="menu-box" style="position: relative;" id="menu-box">
+        <!-- 展示与隐藏侧边栏 开始-->
+        <!-- <div style="position: absolute;left: 20px;top: 20px;width: 30px;height: 30px;background-color: #3796A7;"></div> -->
+        <input type="checkbox" id="menu-btn">
+        <label for="menu-btn"><i class="iconfont icon-yemianfanhui"></i></label>
+        <!-- <div style="position:absolute;left: 1520px;top: 65px;align-items: center;justify-content:left;width: 400px;"> -->
+        <!-- <div class="biao1" style="align-items: center;justify-content:left;width: 400px;">
+                <nav class="nav" style="text-align: right; margin-left: 1520px;box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);">
+                    <input type="radio" name="nav-item-opt" id="nav-item-opt-1" checked>
+                    <label class="nav-item" for="nav-item-opt-1" >周视图</label>
+            
+                    <input type="radio" name="nav-item-opt" id="nav-item-opt-2">
+                    <label class="nav-item" for="nav-item-opt-2">日视图</label>
+            
+                    <div class="tracker"></div>
+                </nav>
+            </div> -->
+
+        <select class="selweek" id="lllll" onchange="handleChange()"
+            style="z-index: 50; position: absolute;top: 150px;left: 1705px;display: none; width: 150px; height: 60px; margin-top: 50px; font-size: 25px; text-align: center; border-radius: 10px; background-color: #CEA;cursor: pointer;">
+            <option value="1" selected="selected">周一</option>
+            <option value="2">周二</option>
+            <option value="3">周三</option>
+            <option value="4">周四</option>
+            <option value="5">周五</option>
+            <option value="6">周六</option>
+            <option value="7">周日</option>
+        </select>
+
+        <div class="biao1" id="biao11" style="display: none;margin-top: 100px;">
+
+            <!-- <div class="title">排班日视图</div> -->
+            <div class="middle">
+                <!-- <link rel="stylesheet" href="css/rishi.css"> -->
+
+                <div class="middle-right">
+                    <span class="timearea">
+                        营业时间：
+                        <span class='time'>8 AM ~ 9 PM</span>
+                        <span class='dianmianmianji'>店面面积：</span>
+                        <span class='area'>200m²</span>
+                    </span>
+
+                    <!-- <select class="selweek" style="float: right; width: 120px; height: 60px; margin-top: 50px; font-size: 25px; text-align: center; border-radius: 10px; background-color: #CEA;">
+                        <option value="1" selected="selected">周一</option>
+                        <option value="2">周二</option>
+                        <option value="3">周三</option>
+                        <option value="4">周四</option>
+                        <option value="5">周五</option>
+                        <option value="6">周六</option>
+                        <option value="7">周日</option>
+                    </select> -->
+                    <!-- <select class="selweek">
+                        <option value="w1" selected="selected">周一</option>
+                        <option value="w2">周二</option>
+                        <option value="w3">周三</option>
+                        <option value="w4">周四</option>
+                        <option value="w5">周五</option>
+                        <option value="w6">周六</option>
+                        <option value="w7">周日</option>
+                    </select> -->
+                    <!-- <select name="" id="selSex" class="sel">
+                        <option value="">门店1</option>
+                        <option value="">门店2</option>
+                        <option value="">门店3</option>
+                        <option value="" selected="selected">所有门店</option>
+                    </select> -->
+                    <!-- <button class="search">查询</button> -->
+                </div>
+            </div>
+            <div class="tab">
+                <table cellspacing="0" id="tb_1" style="margin-top: 50px;">
+                    <thead>
+                        <tr>
+                            <th>6AM-7AM</th>
+                            <th>8AM-10AM</th>
+                            <th>10AM-12AM</th>
+                            <th>12AM-2PM</th>
+                            <th>2PM-4PM</th>
+                            <th>4PM-6PM</th>
+                            <th>6PM-8PM</th>
+                            <th>8PM-10PM</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+        </div>
+        <!-- <div class="biao1" style="width: 400px;">
+                <nav class="nav" style="text-align: right; margin-left: 50px;box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);">
+                  <input type="radio" name="nav-item-opt" id="nav-item-opt-1" checked>
+                  <label class="nav-item" for="nav-item-opt-1">周视图</label>
+        
+                  <input type="radio" name="nav-item-opt" id="nav-item-opt-2">
+                  <label class="nav-item" for="nav-item-opt-2">日视图</label>
+        
+                   <div class="tracker"></div>
+               </nav>
+            </div> -->
+
+        <div class="biao1" id="biao12" style="width: 1500px;min-height: 1030px; ">
+            <!-- <div style="display: inline-block;">
+                <nav class="nav" style="text-align: right; box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);">
+                    <input type="radio" name="nav-item-opt" id="nav-item-opt-1" checked>
+                    <label class="nav-item" for="nav-item-opt-1" >周视图</label>
+            
+                    <input type="radio" name="nav-item-opt" id="nav-item-opt-2">
+                    <label class="nav-item" for="nav-item-opt-2">日视图</label>
+            
+                    <div class="tracker"></div>
+                </nav></div> -->
+            <div class="calendar" id="biao13">
+                <div class="headA" id="x"
+                    style="text-align: left;display: flex;flex-direction: row;align-items: center;justify-content:left;margin-bottom: 10px;">
+                    <div
+                        style="margin-right: 30px; font-size: 1rem;font-weight: bold;font-family: 'KaiTi', Tahoma, Geneva, Verdana, sans-serif;">
+                        <p>未被安排工作的员工</p>
+                    </div>
+                    <!-- <label for="selSex" class="selSexf" style="font-family: 'KaiTi';font-size: 1.2rem;"> 门店:</label> -->
+                    <select name="" id="selSex" class="sel">
+                        <!-- <option value="" ></option> -->
+                        <option value="1" selected="selected">门店1</option>
+                        <option value="2">门店2</option>
+                        <option value="3">门店3</option>
+                        <!-- <option value="4" selected="selected">所有门店</option> -->
+                    </select>
+                    <label>
+                        <select name="" id="selSex2" class="sel">
+                            <!-- <option value="" ></option> -->
+                            <option value="1">门店经理</option>
+                            <option value="2">经理</option>
+                            <option value="3">小组长</option>
+                            <option value="4">店员</option>
+                            <option value="5" selected="selected">所有职位</option>
+                        </select></label>
+                    <!-- <input type="date" value="2022-12-12" name="mouth_start" style=" font-family:  'Trebuchet MS','KaiTi', Tahoma, sans-serif;width: 218px;height: 50px;font-weight: 600; font-size: 1rem;background-color: #8fabd0a0;border:3px solid #fff;border-radius: 10px; box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6)"/> -->
+
+
+                    <!-- <label for="inputPwd" class="inputPwdf" style="font-family: 'KaiTi';font-size: 1rem;">门店名称:</label> <input type="text" id="inputPwd" style="font-family: 'KaiTi';width: 200px;height: 40px;font-size: 0.9rem;"
+                            placeholder="请输入门店名称" /> -->
+                    <label for="inputN" class="inputNf" style="font-family: 'KaiTi';font-size: 0.9rem;">人员姓名:
+                    </label>
+                    <input type="text" id="inputN"
+                        style="font-family: 'KaiTi';width: 200px;height: 40px;font-size: 0.8rem;"
+                        placeholder="请输入人员姓名" />
+
+                    <button type="button" value="" class="btnG2" id="findBtn" style="margin-right: 20px;"
+                        onclick="findBtnFun()">查找</button>
+                    <button type="button" value="" class="btnG3" id="btnG" onclick="btnG()">添加</button>
+                </div>
+
+                <div id="footA" style="height:263px; margin-bottom: 0px;">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>人员ID</th>
+                                <th>人员姓名</th>
+                                <th>门店</th>
+                                <th>人员职位</th>
+                                <th>偏好时间</th>
+                                <th>工作时间描述</th>
+                                <th>操作1</th>
+                                <th>操作2</th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <body onload="goPage(1,5)">
+                        <table border="1" id="0">
+                            <!-- <thead>
+                                <tr>
+        
+                                    <th>人员ID</th>
+                                    <th>人员姓名</th>
+                                    <th>门店</th>
+                                    <th>人员职位</th>
+                                    <th>偏好时间</th>
+                                    <th>工作时间描述</th>
+                                    <th>操作1</th>
+                                    <th>操作2</th>
+                                </tr>
+                            </thead> -->
+                            <tbody id="tbody">
+
+
+
+                            </tbody>
+                        </table>
+                        <div style=" display: flex;flex-direction: row; position: relative;">
+                            <div id="barcon" name="barcon" class="barcon"></div>
+                            <div id="barcon2" name="barcon" class="barcon" style="position: absolute; right: 0;"></div>
+                        </div>
+
+                    </body>
+
+
+                </div>
+                <div id="wwww1">
+                    <label>
+                        <select name="" id="selSex3" class="sel" style="margin-left: 15px;
+                width: 235px;
+                height: 60px;
+                /* font-family: 'KaiTi'; */
+                font-weight: bold;
+                font-size: 0.75rem;
+                padding: 5px 10px;
+                color: #fff;
+                border: 3px solid white;
+                /* border-radius: 5px; */
+                background-color: #7CC9D7;
+                box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);">
+                            <!-- <option value="" ></option> -->
+                            <option value="1" selected="selected">门店1</option>
+                            <option value="2">门店2</option>
+                            <option value="3">门店3</option>
+                        </select></label>
+                    <label>
+                        <select name="" id="selSex4" class="sel" style="margin-left: 25px;margin-top: 15px;margin-bottom: 15px;
+                width: 235px;
+                height: 60px;
+                /* font-family: 'KaiTi'; */
+                font-weight: bold;
+                font-size: 0.75rem;
+                padding: 5px 10px;
+                color: #fff;
+                border: 3px solid white;
+                /* border-radius: 5px; */
+                background-color: #7CC9D7;
+                box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);">
+                            <!-- <option value="" ></option> -->
+                            <option value="1" selected="selected">按技能分组</option>
+                            <option value="2">按岗位分组</option>
+                            <option value="3">按人员分组</option>
+                        </select></label>
+                </div>
+                <!-- <div style="display: inline-block;" id="wwww1">
+                        
+                     <template id="select-list" style="text-align: left;" >
+                         <div class="select-list-wrap" :class="{ 'show-select' : showSelect }" @click="showSelectList">
+                             <div class="select-list-select-item">
+                                 <span>{{ selectItem }}</span>
+                                 <svg class="icon" viewBox="0 0 1024 1024" width="20" height="20">
+                                     <path
+                                         d="M579.043 792.408l418.544-418.641c25.83-25.827 33.48-64.34 19.53-98.087-13.95-33.655-46.79-55.52-83.14-55.52L96.8 220.16c-36.352 0-69.205 21.955-83.147 55.52-4.59 11.157-6.842 22.86-6.842 34.47 0 23.395 9.177 46.43 26.365 63.62l418.641 418.639c16.912 16.91 39.772 26.365 63.622 26.365 23.84 0 46.795-9.535 63.62-26.365L579.043 792.409 579.043 792.408z"
+                                         fill="#ffffff">
+                                     </path>
+                                 </svg>
+                             </div>
+                             <div class="select-list-content" ref="selectListContent" @click.stop="hideSelectList">
+                                 <ul>
+                                     <li v-for="item in list" @click="select(item)">{{ item }}</li>
+                                 </ul>
+                             </div>
+                         </div>
+                     </template>
+                     
+                     <div id="app" style="text-align: left;display: flex; flex-direction: row;align-items: center;justify-content:left;">
+                         
+                         <select-list :list="list" default="门店1" @select="select" style="box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);"></select-list>
+                         <select-list :list="list3" default="按技能分组" @select="select" style="box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);"></select-list>
+                     </div>
+                     
+                     </div> -->
+                <div style=" display: flex;flex-direction: row;align-items: center;justify-content:left;">
+
+
+                    <!-- <div class="header" id="wwww2" style="margin-left:50px;">
+                      <button class="lastYear" title="Last year">&lt;&lt;</button>
+                      <button class="lastMonth" title="Last month">&lt;</button>
+                      <div class="currentDate"></div>
+                      <button class="nextMonth" title="Next month">&gt;</button>
+                      <button class="nextYear" title="Next year">&gt;&gt;</button>
+                    </div> -->
+                    <nav class="nav"
+                        style="position: fixed;right: 50px;top:70px; text-align: right; margin-left: 50px;box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);">
+                        <input type="radio" name="nav-item-opt" id="nav-item-opt-1" checked>
+                        <label class="nav-item" for="nav-item-opt-1">周视图</label>
+
+                        <input type="radio" name="nav-item-opt" id="nav-item-opt-2">
+                        <label class="nav-item" for="nav-item-opt-2">日视图</label>
+
+                        <div class="tracker"></div>
+                    </nav>
+                </div>
+
+
+
+                <!-- type=date 年月日形式 -->
+
+                <!-- <input type="date" value="2022-12-12" name="mouth_start"/> -->
+                <!-- <input type="date" value="2022-12-12" name="mouth_end"/> -->
+                <div class="header" id="wwww2" style="margin-top: 0;">
+                    <button class="lastYear" title="Last year">&lt;&lt;</button>
+                    <button class="lastMonth" title="Last month">&lt;</button>
+                    <div class="currentDate" style="padding-left: 200px;padding-right: 200px;"></div>
+                    <button class="nextMonth" title="Next month">&gt;</button>
+                    <button class="nextYear" title="Next year">&gt;&gt;</button>
+                </div>
+                <div id="wwww3">
+                    <div class="dates2"></div>
+                    <div class="dates" style="pointer-events: none;margin-top: 5px;display: none;"></div>
+                    <!-- <div class="dates3"></div> -->
+                    <div class="days">
+                        <div class="day" style="visibility: hidden;">000</div>
+                        <div class="day">Mon</div>
+                        <div class="day">Tue</div>
+                        <div class="day">Wed</div>
+                        <div class="day">Thu</div>
+                        <div class="day">Fri</div>
+                        <div class="day">Sat</div>
+                        <div class="day">Sun</div>
+                    </div>
+
+                    <div class="shijians"></div>
+
+                </div>
+                <!-- <div class="date">1</div>
+                      <div class="date">2</div>
+                      <div class="date">3</div>
+                      <div class="date">4</div>
+                      <div class="date">5</div>
+                      <div class="date">6</div>
+                      <div class="date">7</div>
+                      <div class="date">8</div>
+                      <div class="date">9</div>
+                      <div class="date">10</div>
+                      <div class="date">11</div>
+                      <div class="date">12</div>
+                      <div class="date">13</div>
+                      <div class="date">14</div> -->
+                <!-- <div style="text-align: right;">
+                          <button id="opp" style="margin-top: 20px;  border-radius: 10px; color: #fff;border: 2px solid #fff;outline: none;background-color: #8FD0B8; box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);cursor: pointer;padding: 20px 50px;transition: all 0.3s;font-size: 1.0rem;">智能生成排班表</button>
+                          <button id="opp2" style="margin-top:20px;border-radius: 10px; color: #fff;border: 2px solid #fff;outline: none;background-color: #9ca0a1; box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);cursor: pointer;padding: 20px 50px;transition: all 0.3s;font-size: 1.0rem;margin-left: 10px;">重置</button>
+
+                      </div> -->
+
+                <!-- <div style="text-align: left;display: flex;flex-direction: row;align-items: center;justify-content:left;"> -->
+                <!-- <div style="margin-right: 450px;font-size: 1.2rem;font-weight: bold;font-family: 'KaiTi', Tahoma, Geneva, Verdana, sans-serif;"><p>未被安排工作的员工</p></div>
+                        <label for="selSex" class="selSexf" style="font-family: 'KaiTi';font-size: 1.2rem;"> 门店:</label>
+                            <select name="" id="selSex" class="sel">
+                                <option value="">门店1</option>
+                                <option value="">门店2</option>
+                                <option value="">门店3</option>
+                            </select>
+                        <label for="selSex" class="selSexf" style="font-family: 'KaiTi';font-size: 1.2rem;"> 职位:</label>
+                            <select name="" id="selSex" class="sel">
+                                <option value="">门店经理</option>
+                                <option value="">经理</option>
+                                <option value="">小组长</option>
+                                <option value="">店员</option>
+                            </select> 
+                        <div style="text-align: right;align-items: center;">
+                            <button type="button" value="" class="btnG2" id="findBtn" style="margin-right: 20px;" onclick="findBtnFun()">查找</button>
+                            <button type="button" value="" class="btnG3" id="btnG" onclick="btnG()">添加</button>
+                        </div> -->
+
+                <!-- </div> -->
+
+                <div id="tableA"
+                    style="text-align: left;display: flex;flex-direction:column;align-items: center;justify-content:left;">
+
+                    <!--  
+                        <div class="headA" style="text-align: left;display: flex;flex-direction: row;align-items: center;justify-content:left;margin-bottom: 20px;">
+                            <div style="margin-right: 30px; font-size: 1rem;font-weight: bold;font-family: 'KaiTi', Tahoma, Geneva, Verdana, sans-serif;"><p>未被安排工作的员工</p></div>
+                            <select name="" id="selSex" class="sel">
+                                
+                                <option value="1" selected="selected">门店1</option>
+                                <option value="2">门店2</option>
+                                <option value="3">门店3</option>
+                            </select>
+                            <label>
+                            <select name="" id="selSex2" class="sel">
+                               
+                                <option value="1" >门店经理</option>
+                                <option value="2">经理</option>
+                                <option value="3">小组长</option>
+                                <option value="4">店员</option>
+                                <option value="5" selected="selected">所有职位</option>
+                            </select></label>
+                           
+                            <label for="inputN" class="inputNf" style="font-family: 'KaiTi';font-size: 0.9rem;" >人员姓名: </label> <input type="text" id="inputN" style="font-family: 'KaiTi';width: 200px;height: 40px;font-size: 0.8rem;" placeholder="请输入人员姓名" />
+                            
+                            <button type="button" value="" class="btnG2" id="findBtn" style="margin-right: 20px;" onclick="findBtnFun()">查找</button>
+                            <button type="button" value="" class="btnG3" id="btnG" onclick="btnG()">添加</button>
+                        </div> -->
+
+                    <!-- <div class="centerA">
+                
+                            <input type="checkbox" id="allChose" onclick="allChose()">
+                            <label for="allChose" class="allChosef" id="allChosef">全选</label> 
+                            
+                
+                
+                        </div> -->
+                    <!-- overflow-y: scroll; -->
+                    <!-- <div class="footA"  id="footA" style="height:100px; margin-bottom: 30px;"> -->
+                    <div id="footA" style=" margin-bottom: 30px;">
+
+
+
+
+
+
+
+                        <!-- <div id="barcon" name="barcon"></div> -->
+                        <div class="zhezhao" id='zhezhao3' style="display: none;">
+                            <div class="tankuang2">
+                                <div id="header">
+                                    <h3>编辑界面</h3>
+                                </div> <br>
+                                <div id='tankuangBody' style="font-weight: 400;font-size: 18px;">
+                                    <label for="" class="lb11" style="color: #fff;">工作员：</label> <input type="text"
+                                        name="" id="acccc" class="lb11t"><br>
+
+                                </div>
+
+                                <div id='tankuangFoot2' style="margin-top: 10px;margin-bottom: 30px;">
+                                    <input type="button" value="确定" id="queding" onclick="sureBtn1()">
+                                    <input type="button" value="取消" onclick=" hidder()">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="zhezhao" id='zhezhao' style="display: none;">
+                            <div class="tankuang">
+                                <div id="header">
+                                    <h3>修改界面</h3>
+                                </div> <br>
+                                <div id='tankuangBody' style="font-weight: 400;font-size: 18px;">
+                                    <label for="" class="lb11" style="color: #fff;">人员ID：</label> <input type="text"
+                                        name="" id="accNN" class="lb11t"><br>
+                                    <label for="" class="lb22" style="color: #fff;">人员姓名：</label> <input type="text"
+                                        name="" id="pwdNN" class="lb22t"><br>
+
+                                    <label for="" class="lb33" style="color: #fff;">门店：</label> <input type="text"
+                                        name="" id="goodsNN" class="lb33t"><br>
+                                    <label for="" class="lb44" style="color: #fff;">人员职位：</label> <input type="text"
+                                        name="" id="NN4" class="lb44t"><br>
+                                    <label for="" class="lb55" style="color: #fff;">偏好时间：</label> <input type="text"
+                                        name="" id="NN5" class="lb55t"><br>
+                                    <label for="" class="lb66" style="color: #fff;">工作时间描述：</label> <input type="text"
+                                        name="" id="NN6" class="lb66t"><br>
+                                </div>
+
+                                <div id='tankuangFoot' style="margin-top: 20px;margin-bottom: 30px;">
+                                    <input type="button" value="确定" onclick="sureBtn()">
+                                    <input type="button" value="取消" onclick=" hidder()">
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="zhezhao" id='zhezhao2' style="display: none;">
+                            <div class="tankuang">
+                                <div id="header">
+                                    <h3>添加人员</h3>
+                                </div> <br>
+                                <div id='tankuangBody' style="font-weight: 400;font-size: 18px;">
+                                    <label for="" class="lb11" style="color: #fff;">人员ID：</label> <input type="text"
+                                        name="" id="accNNN" class="lb11t"><br>
+                                    <label for="" class="lb22" style="color: #fff;">人员姓名：</label> <input type="text"
+                                        name="" id="pwdNNN" class="lb22t"><br>
+
+                                    <label for="" class="lb33" style="color: #fff;">门店：</label> <input type="text"
+                                        name="" id="goodsNNN" class="lb33t"><br>
+                                    <label for="" class="lb44" style="color: #fff;">人员职位：</label> <input type="text"
+                                        name="" id="NNN4" class="lb44t"><br>
+                                    <label for="" class="lb55" style="color: #fff;">偏好时间：</label> <input type="text"
+                                        name="" id="NNN5" class="lb55t"><br>
+                                    <label for="" class="lb66" style="color: #fff;">工作时间描述：</label> <input type="text"
+                                        name="" id="NNN6" class="lb66t"><br>
+                                </div>
+
+                                <div id='tankuangFoot' style="margin-top: 20px;margin-bottom: 30px;">
+                                    <input type="button" value="确定" onclick="addSure()">
+                                    <input type="button" value="取消" onclick=" hidder()">
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <script src="./calendar.js"></script>
+            <script src="./script.js"></script>
+            <script src="./js/rishi.js"></script>
+            <script src="./biao2.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+        </div>
+
+        <!-- 展示与隐藏侧边栏 结束-->
+        <div class="menu">
+            <!-- 侧边栏的标题 开始-->
+            <div class="menu-title">
+                <h1>Menu</h1>
+            </div>
+            <!-- 侧边栏的标题 结束-->
+
+            <!-- 每一项导航 -->
+            <div class="menu-item">
+                <input type="checkbox" id="menu-item1">
+                <label for="menu-item1">
+                    <i class="menu-item-icon iconfont icon-a-04-zixunfabu"></i>
+                    <div>部门人员管理</div>
+                    <i class="menu-item-last iconfont icon-down"></i>
+                </label>
+                <div class="menu-content">
+                    <div><a href="renyuan.html" id="o1">人员信息</a></div>
+                    <!-- <span>option2</span> -->
+                    <!-- <span>option3</span> -->
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <input type="checkbox" id="menu-item2">
+                <label for="menu-item2">
+                    <i class="menu-item-icon iconfont icon-a-04-zixunfabu"></i>
+                    <div>门店管理</div>
+                    <i class="menu-item-last iconfont icon-down"></i>
+                </label>
+                <div class="menu-content">
+                    <div><a href="mendian.html" id="o2">门店信息</a></div>
+                    <!-- <span>option2</span> -->
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <input type="checkbox" id="menu-item3">
+                <label for="menu-item3">
+                    <i class="menu-item-icon iconfont icon-a-02-kechengguanli"></i>
+                    <div>排班规则</div>
+                    <i class="menu-item-last iconfont icon-down"></i>
+                </label>
+                <div class="menu-content">
+                    <div><a href="guize.html" id="o3">规则编辑</a></div>
+                    <!-- <span>option2</span> -->
+                    <!-- <span>option3</span> -->
+                </div>
+            </div>
+            <div class="menu-item">
+                <input type="checkbox" id="menu-item4">
+                <label for="menu-item4">
+                    <i class="menu-item-icon iconfont icon-a-02-kechengguanli"></i>
+                    <div>业务预测</div>
+                    <i class="menu-item-last iconfont icon-down"></i>
+                </label>
+                <div class="menu-content">
+                    <div><a href="yewu.html" id="o4">业务预测数据</a></div>
+                    <!-- <span>option2</span> -->
+                    <!-- <span>option3</span> -->
+                </div>
+            </div>
+            <div class="menu-item">
+                <input type="checkbox" id="menu-item5">
+                <label for="menu-item5">
+                    <i class="menu-item-icon iconfont icon-a-01-shujuzhongxin"></i>
+                    <div>智能排班</div>
+                    <i class="menu-item-last iconfont icon-down"></i>
+                </label>
+                <div class="menu-content">
+                    <div id="zhineng" onclick="show()"><a href="zhineng.html" id="o5">智能生成排班</a></div>
+                    <div><a href="kaifang.html" id="o6">开放班次管理</a></div>
+                    <!-- <span>option3</span> -->
+                </div>
+            </div>
+            <div class="set-line"></div>
+
+            <div class="menu-item">
+                <label>
+                    <i class="menu-item-icon iconfont icon-a-08-shezhi"></i>
+                    <div>setting</div>
+                </label>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    /**
+    * 分页函数
+    * pno--页数
+    * psize--每页显示记录数
+    * 分页部分是从真实数据行开始，因而存在加减某个常数，以确定真正的记录数
+    * 纯js分页实质是数据行全部加载，通过是否显示属性完成分页功能
+    **/
+    // function goPage(pno,psize){
+    //     var itable = document.getElementById("0");
+    //     var num = itable.rows.length;//表格所有行数(所有记录数)
+    //     console.log("hangshu"+num);
+    //     // console.log(num);
+    //     var totalPage = 0;//总页数
+    //     var pageSize = psize;//每页显示行数
+    //   //总共分几页
+    //     if(num/pageSize > parseInt(num/pageSize)){
+    //         totalPage=parseInt(num/pageSize)+1;
+    //     }else{
+    //         totalPage=parseInt(num/pageSize);
+    //     }
+    //     var currentPage = pno;//当前页数
+    //     var startRow = (currentPage - 1) * pageSize+1;//开始显示的行 31
+    //     var endRow = currentPage * pageSize;//结束显示的行  40
+    //     endRow = (endRow > num)? num : endRow;  //40
+    //     console.log(endRow);
+    //     //遍历显示数据实现分页
+    // 	for(var i=1;i<(num+1);i++){
+    // 	    var irow = itable.rows[i-1];
+    // 	    if(i>=startRow && i<=endRow){
+    // 	      irow.style.display = "block";
+    // 	    }else{
+    // 	      irow.style.display = "none";
+    // 	    }
+    // 	}
+    //     var tempStr = "共"+num+"条记录  分"+totalPage+"页  当前第"+currentPage+"页";
+    //     if(currentPage>1){
+    //     	tempStr += "<a href=\"#\"  onClick=\"goPage("+(1)+","+psize+")\">首页</a>";
+    //     	tempStr += "<a href=\"#\" onClick=\"goPage("+(currentPage-1)+","+psize+")\"><上一页</a>"
+    //     }else{
+    //     	tempStr += "首页";
+    //     	tempStr += "<上一页";
+    //     }
+    //     if(currentPage<totalPage){
+    //     	tempStr += "<a href=\"#\" onClick=\"goPage("+(currentPage+1)+","+psize+")\">下一页></a>";
+    //     	tempStr += "<a href=\"#\" onClick=\"goPage("+(totalPage)+","+psize+")\">尾页</a>";
+    //     }else{
+    //     	tempStr += "下一页>";
+    //     	tempStr += "尾页";
+    //     }
+    //     document.getElementById("barcon").innerHTML = tempStr;
+    // }
+
+
+
+    function show() {
+        document.getElementById('content').getElementById('menu-box').getElementById('ab').style.display = "none";
+        var b = document.getElementById('content').getElementById('menu-box').getElementById('biao1').style.display = "";
+
+    }
+
+
+</script>
+<!-- </body> -->
+
+</html>

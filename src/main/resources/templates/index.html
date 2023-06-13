@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <!-- 导入阿里的图标样式文件 -->
+    <link rel="stylesheet" href="iconfont.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<style>
+    #navbar{
+        position: fixed;
+        z-index: 2001;
+        top: 0px;
+        width: 100%;
+        left: 0px;
+        font-size: 14px;
+        /* 字体粗细，400相当于normal */
+        font-weight: 400;
+        color: #222226;
+        background-color: #fff;
+        /* 阴影  水平阴影距离，垂直阴影距离， 模糊尺寸， 阴影尺寸 颜色*/
+         box-shadow:0 2px 4px 0 rgb(0, 0, 0,5%);
+    }
+    /*  */
+    .navbar-container{
+        width: 100%;
+        /* 最小宽度，窗口缩小之后到1280px不会再缩小 */
+        min-width: 1280px;
+        box-sizing: border-box;
+        padding: 0 24px;
+        margin: 0 auto;
+        height: 48px;
+        line-height: 48px;
+        display: flex;
+        justify-content: space-between;
+        -webkit-box-pack: justify;
+    }
+    .toolbar-container-left{
+        /* 元素会根据自身宽高来设置尺寸。它是完全非弹性的：既不会缩短，也不会伸长来适应 flex 容器 */
+        flex: none;
+    }
+    .logo{
+        position: relative;
+        float: left;
+        margin-right: 8px;
+        /* 当箭头鼠标移到会变成手式鼠标 */
+        cursor: pointer;
+    }
+    .logo img{
+        width: 80px;
+        max-width: 80px;
+        height: 44px;
+        display: block;
+        /* cacl()将img放在盒内的高的中间 */
+        margin-top: calc((48px - 44px)/ 2);
+    }
+    .left-ul{
+        width: auto;
+        height: 100%;
+        /* 去除li中的间隙，在li中要设置font-size,否则没有内容 */
+        font-size: 0px;
+        float: left;
+    }
+    .left-ul li{
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+        height: 100%;
+        line-height: 48px;
+    }
+    a{
+        color:#000;
+        padding: 0 10px;
+        /* 删除a标签的下划线 */
+        text-decoration: none;
+    }
+    /* 鼠标停留时的样式 */
+     .left-ul li:hover{
+        background-color: #eee;
+     }
+     .navbar-container-middle{
+        padding: 0 40px;
+        flex: 1;
+    }
+    
+    .navbar-btns-User{
+        flex: 1;
+    }
+    .userPhoto{
+        height: 100%;
+        float: left;
+        position: relative;
+        line-height: 48px;
+        text-align: center;
+        padding: 0 8px;
+    }
+    .hasAvatar{
+        display: block;
+        line-height: 48px;
+        color: #222226;
+        margin-top: calc((48px - 32px)/ 2);
+        /* margin-right: 16px; */
+        opacity: 1;
+    }
+    .hasAvatar img{
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+    }
+   
+    .navbar-btn{
+        position: relative;
+        height: 48px;
+        line-height: 48px;
+        color: inherit;
+        text-align: center;
+        padding: 0 8px;
+    }
+    .navbar-fl{
+        float: left;
+    }
+    
+</style>
+<body>
+    <div id="navbarBox" style="min-height: 48px;position: absolute;">
+        <!-- fixed定位后的导航栏 -->
+        <div id="navbar">
+            <!-- 导航栏容器 -->
+            <!-- #acb1b2 -->
+            <!-- <div class="navbar-container" style="background-color: #3796A7;"> -->
+            <div class="navbar-container" style="background-color: #383839;">
+                <div class="navbar-container-left">
+                    <!-- csdn的logo -->
+                    <div class="logo">
+                        <!-- <img src="11.png" alt=""> -->
+                    </div>
+                </div>
+                <div class="navbar-container-right">
+                    <div class="navbar-btns-User">
+                        <div class="userPhoto" onmouseover="over()" onmouseout="out()">
+                            <!-- 小头像 -->
+                            <a class="hasAvatar" href="https://blog.csdn.net/xingzhidaoren?spm=1000.2115.3001.5343"  >
+                                <img src="22.png">
+                            </a> 
+                        </div>
+                        <!-- 动态 -->
+                        <!-- <div class="navbar-btn navbar-btn-dynamic navbar-fl">
+                            <a>动态</a>
+                        </div>             -->
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content" id="content" style="background-color: #ECF5F2;">
+        
+        <!-- <div class="top" style="width: 100%;height: 2.5rem;background-color: #3796A7;position: relative;"> -->
+            <!-- <input type="button" style="height: 2.5rem;width: 5rem;position: absolute;left: 99%;"></div> -->
+        <!-- </div> -->
+        <!-- <div style="position: absolute;left: 20px;top: 20px;width: 30px;height: 30px;background-color: #3796A7;"></div> -->
+        <div class="menu-box" style="position: relative;" id="menu-box">
+            <!-- 展示与隐藏侧边栏 开始-->
+            <!-- <div style="position: absolute;left: 20px;top: 20px;width: 30px;height: 30px;background-color: #3796A7;"></div> -->
+            <input type="checkbox" id="menu-btn">
+            <label for="menu-btn"><i class="iconfont icon-yemianfanhui"></i></label>
+            <div id="ab"></div>
+            
+            
+            <!-- 展示与隐藏侧边栏 结束-->
+            <div class="menu">
+                <!-- 侧边栏的标题 开始-->
+                <div class="menu-title">
+                    <h1>Menu</h1>
+                </div>
+                <!-- 侧边栏的标题 结束-->
+
+                <!-- 每一项导航 -->
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item1">
+                    <label for="menu-item1">
+                        <i class="menu-item-icon iconfont icon-a-04-zixunfabu"></i>
+                        <div>部门人员管理</div>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+                    <div class="menu-content">
+                        <div><a href="renyuan.html" id="o1">人员信息</a></div>
+                        <!-- <span>option2</span> -->
+                        <!-- <span>option3</span> -->
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item2">
+                    <label for="menu-item2">
+                        <i class="menu-item-icon iconfont icon-a-04-zixunfabu"></i>
+                        <div>门店管理</div>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+                    <div class="menu-content">
+                        <div><a href="mendian.html" id="o2">门店信息</a></div>
+                        <!-- <span>option2</span> -->
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item3">
+                    <label for="menu-item3">
+                        <i class="menu-item-icon iconfont icon-a-02-kechengguanli"></i>
+                        <div>排班规则</div>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+                    <div class="menu-content">
+                        <div><a href="guize.html" id="o3">规则编辑</a></div>
+                        <!-- <span>option2</span> -->
+                        <!-- <span>option3</span> -->
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item4">
+                    <label for="menu-item4">
+                        <i class="menu-item-icon iconfont icon-a-02-kechengguanli"></i>
+                        <div>业务预测</div>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+                    <div class="menu-content">
+                        <div><a href="yewu.html" id="o4">业务预测数据</a></div>
+                        <!-- <span>option2</span> -->
+                        <!-- <span>option3</span> -->
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item5">
+                    <label for="menu-item5">
+                        <i class="menu-item-icon iconfont icon-a-01-shujuzhongxin"></i>
+                        <div>智能排班</div>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+                    <div class="menu-content">
+                        <div id="zhineng" onclick="show()"><a href="zhineng.html" id="o5">智能生成排班</a></div>
+                        <div><a href="kaifang.html" id="o6">开放班次管理</a></div>
+                        <!-- <span>option3</span> -->
+                    </div>
+                </div>
+                <div class="set-line"></div>
+
+                <div class="menu-item">
+                    <label>
+                        <i class="menu-item-icon iconfont icon-a-08-shezhi"></i>
+                        <div>setting</div>
+                    </label>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+   <script type="text/javascript">
+    //   function show(){
+    //     document.getElementById('content').getElementById('menu-box').getElementById('ab').style.display="none";
+    //     var b=document.getElementById('content').getElementById('menu-box').getElementById('biao1').style.display="";
+        
+    //   }
+    // $(function(){
+    //     $('span').bind('click',function(){
+    //         event.stopPropagation();
+    //     })
+    // })
+    // var btn6=document.getElementById("biao1");
+    // // var b=document.getElementById("zhineng");
+    // function show(){
+    //     event.stopPropagation();
+    //     btn6.style.display="none";
+    //     btn6.setAttribute('display','none');
+    // }
+    // window.onload=function(){
+    //    var btn6=document.getElementById("biao1");
+    //    var b=document.getElementById("zhineng");
+    //    b.onclick = function(){
+    //     event.stopPropagation();
+    //     btn6.style.display="none";
+    //  } 
+    // }
+     
+   </script>
+</body>
+</html>
